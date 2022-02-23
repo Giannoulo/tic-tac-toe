@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Dashboard from "./Components/Dashboard";
 import Header from "./Components/Header";
+import Button from "./Components/StyledComponents/Button";
 
 const Container = styled.div`
   height: 100%;
@@ -18,10 +19,15 @@ const Container = styled.div`
   );
 `;
 function App() {
+  const [buttonReset, setButtonReset] = useState(false);
+  const handleResetClick = (e: React.SyntheticEvent) => {
+    setButtonReset(true);
+  };
   return (
     <Container className="App">
       <Header />
-      <Dashboard />
+      <Dashboard buttonReset={buttonReset} setButtonReset={setButtonReset} />
+      <Button onClick={handleResetClick}>Reset</Button>
     </Container>
   );
 }

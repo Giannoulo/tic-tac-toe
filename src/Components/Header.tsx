@@ -5,6 +5,7 @@ const Container = styled.div`
   font-size: 4rem;
   margin-bottom: 10px;
   color: #fff;
+  user-select: none;
 `;
 const Header = () => {
   return <Container>Tic Tac Toe</Container>;
