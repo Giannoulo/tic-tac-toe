@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, {useState, useEffect, useRef} from "react";
 import styled from "styled-components";
 import Dashboard from "./Components/Dashboard";
 import Header from "./Components/Header";
+import PlayerModal from "./Components/PlayerModal";
+import PlayerSelect from "./Components/PlayerSelect";
 import Button from "./Components/StyledComponents/Button";
 
 const Container = styled.div`
@@ -19,15 +21,40 @@ const Container = styled.div`
   );
 `;
 function App() {
+  const isMounted = useRef(false);
+  const [playerModal, setPlayerModal] = useState("");
   const [buttonReset, setButtonReset] = useState(false);
+  const [firstPlayer, setFirstPlayer] = useState(true);
   const handleResetClick = (e: React.SyntheticEvent) => {
     setButtonReset(true);
   };
+
+  // Handle player modal on player change
+  useEffect(() => {
+    isMounted.current = true;
+    const timeout = setTimeout(() => {
+      if (isMounted.current === true) {
+        setPlayerModal("");
+      }
+    }, 1500);
+    return () => {
+      isMounted.current = false;
+      clearTimeout(timeout);
+    };
+  }, [playerModal]);
+
   return (
     <Container className="App">
       <Header />
-      <Dashboard buttonReset={buttonReset} setButtonReset={setButtonReset} />
+      <PlayerSelect firstPlayer={firstPlayer} setFirstPlayer={setFirstPlayer} />
+      <Dashboard
+        firstPlayer={firstPlayer}
+        setPlayerModal={setPlayerModal}
+        buttonReset={buttonReset}
+        setButtonReset={setButtonReset}
+      />
       <Button onClick={handleResetClick}>Reset</Button>
+      {playerModal !== "" && <PlayerModal player={playerModal} />}
     </Container>
   );
 }

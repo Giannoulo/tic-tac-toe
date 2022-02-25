@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import Tile from "./Tile";
 
@@ -6,23 +6,34 @@ const Container = styled.div`
   background-color: #6930c3;
   height: 500px;
   width: 500px;
-  border-radius: 15px;
+  border-radius: 7px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   column-gap: 4px;
   row-gap: 4px;
+  border: 6px solid #fff;
+  box-sizing: content-box;
 `;
 const Dashboard = ({
+  setPlayerModal,
   buttonReset,
   setButtonReset,
+  firstPlayer,
 }: {
+  setPlayerModal: React.Dispatch<React.SetStateAction<string>>;
   buttonReset: boolean;
   setButtonReset: React.Dispatch<React.SetStateAction<boolean>>;
+  firstPlayer: boolean;
 }) => {
   const [tileJSX, setTileJSX] = useState<JSX.Element[] | null>(null);
   const [tileArray, setTileArray] = useState(Array(9).fill(""));
   const [currentPlayer, setCurrentPlayer] = useState("X");
+
+  // Open player modal when the player changes
+  useEffect(() => {
+    setPlayerModal(currentPlayer);
+  }, [currentPlayer, setPlayerModal]);
 
   // Check for saved localStorage items on mount
   useEffect(() => {
