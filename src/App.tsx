@@ -8,6 +8,8 @@ import Button from "./Components/StyledComponents/Button";
 
 const Container = styled.div`
   height: 100%;
+  color: #fff;
+  font-size: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,7 +26,7 @@ function App() {
   const isMounted = useRef(false);
   const [playerModal, setPlayerModal] = useState("");
   const [buttonReset, setButtonReset] = useState(false);
-  const [firstPlayer, setFirstPlayer] = useState(true);
+  const [firstPlayerX, setFirstPlayerX] = useState(true);
   const handleResetClick = (e: React.SyntheticEvent) => {
     setButtonReset(true);
   };
@@ -46,9 +48,10 @@ function App() {
   return (
     <Container className="App">
       <Header />
-      <PlayerSelect firstPlayer={firstPlayer} setFirstPlayer={setFirstPlayer} />
+      Player Select
+      <PlayerSelect firstPlayerX={firstPlayerX} setFirstPlayerX={setFirstPlayerX} />
       <Dashboard
-        firstPlayer={firstPlayer}
+        firstPlayerX={firstPlayerX}
         setPlayerModal={setPlayerModal}
         buttonReset={buttonReset}
         setButtonReset={setButtonReset}

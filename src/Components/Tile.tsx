@@ -12,15 +12,24 @@ const Container = styled.div`
   user-select: none;
   cursor: pointer;
 `;
-
 type Props = {
   value: string;
   index: number;
   currentPlayer: string;
   tileArray: string[];
   setTileArray: React.Dispatch<React.SetStateAction<string[]>>;
+  setLocalHydration: React.Dispatch<React.SetStateAction<boolean>>;
+  localHydration: boolean;
 };
-const Tile = ({ value, index, currentPlayer, tileArray, setTileArray }: Props) => {
+const Tile = ({
+  value,
+  index,
+  currentPlayer,
+  tileArray,
+  setTileArray,
+  setLocalHydration,
+  localHydration,
+}: Props) => {
   const calculateNewTileArray = () => {
     const newTileArray = [...tileArray];
     newTileArray[index] = currentPlayer;
@@ -28,8 +37,10 @@ const Tile = ({ value, index, currentPlayer, tileArray, setTileArray }: Props) =
   };
 
   const handleTileClick = (e: React.SyntheticEvent) => {
+    if (localHydration === true) {
+      setLocalHydration(false);
+    }
     if (value === "") {
-      console.log("click");
       setTileArray(calculateNewTileArray());
     }
   };

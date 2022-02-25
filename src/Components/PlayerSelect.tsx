@@ -2,8 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
+  font-size: 3rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
   /* The switch - the box around the slider */
   .switch {
+    margin: 0px 10px;
     position: relative;
     display: inline-block;
     width: 60px;
@@ -58,25 +63,26 @@ const Container = styled.div`
   }
 `;
 const PlayerSelect = ({
-  setFirstPlayer,
-  firstPlayer,
+  setFirstPlayerX,
+  firstPlayerX,
 }: {
-  setFirstPlayer: React.Dispatch<React.SetStateAction<boolean>>;
-  firstPlayer: boolean;
+  setFirstPlayerX: React.Dispatch<React.SetStateAction<boolean>>;
+  firstPlayerX: boolean;
 }) => {
   return (
     <Container>
+      O
       <label className="switch">
         <input
           defaultChecked={true}
           onChange={() => {
-            setFirstPlayer(!firstPlayer);
-            console.log(firstPlayer);
+            setFirstPlayerX(!firstPlayerX);
           }}
           type="checkbox"
         />
         <span className="slider round"></span>
       </label>
+      X
     </Container>
   );
 };
