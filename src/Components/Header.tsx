@@ -4,7 +4,8 @@ import styled from "styled-components";
 const Container = styled.div`
   font-size: 4rem;
   margin-bottom: 10px;
-  color: #fff;
+  color: #ff8f0e;
+  text-shadow: 0px 3px 7px black;
   user-select: none;
 `;
 const Header = () => {
