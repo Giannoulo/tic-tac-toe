@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 4rem;
   margin-bottom: 10px;
-  color: #ff8f0e;
-  text-shadow: 0px 3px 7px black;
+  color: #fff;
   user-select: none;
 `;
 const Header = () => {

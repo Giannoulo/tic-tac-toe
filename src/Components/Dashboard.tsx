@@ -2,6 +2,9 @@ import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import Tile from "./Tile";
 
+import {getWinner} from "../Utilities/helperHunctions";
+import WinnerModal from "./WinnerModal";
+
 const Container = styled.div`
   background-color: #6930c3;
   height: 500px;
@@ -31,10 +34,11 @@ const Dashboard = ({
   const [tileArray, setTileArray] = useState(Array(9).fill(""));
   const [currentPlayer, setCurrentPlayer] = useState("");
   const [localHydration, setLocalHydration] = useState(false);
+  const [gameOver, setGameOver] = useState("");
 
   // Handle First player change
   useEffect(() => {
-    if (firstPlayerX === false && !tileArray.find((element) => element !== "")) {
+    if (firstPlayerX === false && tileArray.every((element) => element === "")) {
       setCurrentPlayer("O");
     }
   }, [firstPlayerX, tileArray]);
@@ -63,6 +67,7 @@ const Dashboard = ({
       firstPlayerX === true ? setCurrentPlayer("X") : setCurrentPlayer("O");
       localStorage.removeItem("tileArray");
       localStorage.removeItem("player");
+      setGameOver("");
     }
   }, [firstPlayerX, buttonReset, setButtonReset, setTileArray]);
 
@@ -86,6 +91,14 @@ const Dashboard = ({
     localStorage.setItem("player", currentPlayer);
   }, [currentPlayer]);
 
+  // Check for winner
+  useEffect(() => {
+    const winner = getWinner(tileArray);
+    if (winner !== "none") {
+      setGameOver(winner);
+    }
+  }, [tileArray]);
+
   useEffect(() => {
     setTileJSX(
       tileArray.map((value, index) => (
@@ -102,9 +115,14 @@ const Dashboard = ({
         />
       ))
     );
-  }, [tileArray, currentPlayer]);
+  }, [tileArray, currentPlayer, localHydration]);
 
-  return <Container>{tileJSX}</Container>;
+  return (
+    <Container>
+      {gameOver !== "" && <WinnerModal winner={gameOver} />}
+      {tileJSX}
+    </Container>
+  );
 };
 
 export default Dashboard;

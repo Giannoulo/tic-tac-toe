@@ -22,6 +22,10 @@ const Container = styled.div`
     rgba(86, 207, 225, 1) 100%
   );
 `;
+const StyledSpan = styled.span`
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.1rem;
+`;
 function App() {
   const isMounted = useRef(false);
   const [playerModal, setPlayerModal] = useState("");
@@ -48,7 +52,7 @@ function App() {
   return (
     <Container className="App">
       <Header />
-      Player Select
+      <StyledSpan>Who goes first?</StyledSpan>
       <PlayerSelect firstPlayerX={firstPlayerX} setFirstPlayerX={setFirstPlayerX} />
       <Dashboard
         firstPlayerX={firstPlayerX}
