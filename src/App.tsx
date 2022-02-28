@@ -42,7 +42,7 @@ function App() {
       if (isMounted.current === true) {
         setPlayerModal("");
       }
-    }, 1500);
+    }, 500);
     return () => {
       isMounted.current = false;
       clearTimeout(timeout);

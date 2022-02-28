@@ -12,7 +12,7 @@ const Container = styled.div`
   user-select: none;
   text-shadow: 0px 5px 7px black;
   animation-name: splash;
-  animation-duration: 1.5s;
+  animation-duration: 0.5s;
   animation-timing-function: ease-out;
   animation-iteration-count: infinite;
   @keyframes splash {
