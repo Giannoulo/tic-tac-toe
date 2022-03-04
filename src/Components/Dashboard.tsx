@@ -32,7 +32,7 @@ const Dashboard = ({
 }) => {
   const [tileJSX, setTileJSX] = useState<JSX.Element[] | null>(null);
   const [tileArray, setTileArray] = useState(Array(9).fill(""));
-  const [currentPlayer, setCurrentPlayer] = useState("");
+  const [currentPlayer, setCurrentPlayer] = useState("X");
   const [localHydration, setLocalHydration] = useState(false);
   const [gameOver, setGameOver] = useState("");
 
