@@ -96,7 +96,6 @@ const Dashboard = ({
     const winner = getWinner(tileArray);
     if (winner !== "none") {
       setGameOver(winner);
-      navigator.vibrate([100]);
     }
   }, [tileArray]);
 
